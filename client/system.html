@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Административная панель</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container dashboard">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Административная панель</h1>
+      <div>
+        <span class="user-role">Администратор</span>
+        <button id="logoutBtn" class="btn" style="width: auto; margin-left: 15px;">Выйти</button>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="feature-card">
+        <h3>Добро пожаловать</h3>
+        <p>Вы вошли в систему с правами администратора.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Системные настройки</h3>
+        <p>Конфигурация параметров системы.</p>
+        <button class="feature-btn">Настройки системы</button>
+      </div>
+
+      <div class="feature-card">
+        <h3>Управление пользователями</h3>
+        <p>Полное управление всеми учетными записями.</p>
+        <button class="feature-btn">Управление пользователями</button>
+      </div>
+
+      <div class="feature-card">
+        <h3>Управление ролями</h3>
+        <p>Настройка прав доступа для разных ролей.</p>
+        <button class="feature-btn">Настройка ролей</button>
+      </div>
+
+      <div class="feature-card">
+        <h3>Журнал событий</h3>
+        <p>Просмотр системного журнала событий.</p>
+        <button class="feature-btn">Просмотреть журнал</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>

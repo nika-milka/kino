@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container dashboard">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Личный кабинет</h1>
+      <div>
+        <span class="user-role">Пользователь</span>
+        <button id="logoutBtn" class="btn" style="width: auto; margin-left: 15px;">Выйти</button>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="feature-card">
+        <h3>Добро пожаловать</h3>
+        <p>Вы вошли в систему как обычный пользователь.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Мой профиль</h3>
+        <p>Просмотр и редактирование личной информации.</p>
+        <button class="feature-btn">Открыть профиль</button>
+      </div>
+
+      <div class="feature-card">
+        <h3>Мои заказы</h3>
+        <p>История ваших заказов и бронирований.</p>
+        <button class="feature-btn">Просмотреть заказы</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>

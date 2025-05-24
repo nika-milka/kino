@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель менеджера</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container dashboard">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Панель менеджера</h1>
+      <div>
+        <span class="user-role">Менеджер</span>
+        <button id="logoutBtn" class="btn" style="width: auto; margin-left: 15px;">Выйти</button>
+      </div>
+    </div>
+
+    <div class="dashboard-content">
+      <div class="feature-card">
+        <h3>Добро пожаловать</h3>
+        <p>Вы вошли в систему с правами менеджера.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Управление пользователями</h3>
+        <p>Просмотр и управление учетными записями пользователей.</p>
+        <button class="feature-btn">Управление пользователями</button>
+      </div>
+
+      <div class="feature-card">
+        <h3>Управление заказами</h3>
+        <p>Просмотр и обработка всех заказов в системе.</p>
+        <button class="feature-btn">Просмотреть заказы</button>
+      </div>
+
+      <div class="feature-card">
+        <h3>Отчеты</h3>
+        <p>Генерация отчетов по деятельности системы.</p>
+        <button class="feature-btn">Сформировать отчет</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>
