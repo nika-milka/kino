@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление кинотеатрами</title>
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Управление кинотеатрами</h1>
+                <a href="system.html" class="btn btn-logout" >Вернутся на главную</a>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="cinemas">Кинотеатры</div>
+                <div class="tab" data-tab="halls">Залы</div>
+                <div class="tab" data-tab="hall-types">Типы залов</div>
+            </div>
+
+            <div class="tab-content active" id="cinemas-tab">
+                <div class="table-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>Список кинотеатров</h2>
+                        <button class="btn btn-success" id="addCinemaBtn">Добавить кинотеатр</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="cinemaSearch" placeholder="Поиск по кинотеатрам...">
+                    </div>
+                    <table id="cinemasTable">
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Адрес</th>
+                                <th>Телефон</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Данные будут загружены через JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="halls-tab">
+                <div class="table-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>Список залов</h2>
+                        <button class="btn btn-success" id="addHallBtn">Добавить зал</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="hallSearch" placeholder="Поиск по залам...">
+                    </div>
+                    <table id="hallsTable">
+                        <thead>
+                            <tr>
+                                <th>Кинотеатр</th>
+                                <th>Код зала</th>
+                                <th>Тип зала</th>
+                                <th>Количество мест</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Данные будут загружены через JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="hall-types-tab">
+                <div class="table-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>Типы залов</h2>
+                        <button class="btn btn-success" id="addHallTypeBtn">Добавить тип</button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="hallTypeSearch" placeholder="Поиск по типам залов...">
+                    </div>
+                    <table id="hallTypesTable">
+                        <thead>
+                            <tr>
+                                <th>Тип зала</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Данные будут загружены через JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="cinemaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="cinemaModalTitle">Добавить кинотеатр</h2>
+            <form id="cinemaForm">
+                <input type="hidden" id="cinemaId">
+                <div class="form-group">
+                    <label for="cinemaName">Название:</label>
+                    <input type="text" id="cinemaName" required>
+                </div>
+                <div class="form-group">
+                    <label for="cinemaAddress">Адрес:</label>
+                    <textarea id="cinemaAddress" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="cinemaPhone">Телефон:</label>
+                    <input type="text" id="cinemaPhone" required>
+                </div>
+                <button type="submit" class="btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="hallModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="hallModalTitle">Добавить зал</h2>
+            <form id="hallForm">
+                <input type="hidden" id="hallId">
+                <div class="form-group">
+                    <label for="hallCinemaId">Кинотеатр:</label>
+                    <select id="hallCinemaId" required>
+                        <!-- Опции будут загружены через JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hallCode">Код зала:</label>
+                    <input type="text" id="hallCode" required>
+                </div>
+                <div class="form-group">
+                    <label for="hallTypeId">Тип зала:</label>
+                    <select id="hallTypeId" required>
+                        <!-- Опции будут загружены через JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hallSeats">Количество мест:</label>
+                    <input type="number" id="hallSeats" required>
+                </div>
+                <button type="submit" class="btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="hallTypeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="hallTypeModalTitle">Добавить тип зала</h2>
+            <form id="hallTypeForm">
+                <input type="hidden" id="hallTypeId">
+                <div class="form-group">
+                    <label for="hallTypeName">Название типа:</label>
+                    <input type="text" id="hallTypeName" required>
+                </div>
+                <button type="submit" class="btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-content" style="width: 400px;">
+            <h2>Подтверждение</h2>
+            <p id="confirmMessage">Вы уверены, что хотите удалить этот элемент?</p>
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-danger" id="confirmDelete">Удалить</button>
+                <button class="btn" id="cancelDelete">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/cinemas.js"></script>
+    <script src="js/halls.js"></script>
+    <script src="js/hallTypes.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
