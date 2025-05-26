@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кинотека - Управление фильмами</title>
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Управление фильмами</h1>
+            <a href="manager.html" class="back-link">Вернуться на главную</a>
+        </header>
+        
+        <div class="controls">
+            <button id="addMovieBtn" class="btn">Добавить фильм</button>
+            
+            <div class="filter">
+                <label for="genreFilter">Фильтр по жанру:</label>
+                <select id="genreFilter">
+                    <option value="all">Все жанры</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="moviesContainer" class="movies-grid"></div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="formTitle">Добавить новый фильм</h2>
+            <form id="movieForm">
+                <input type="hidden" id="movieId">
+                
+                <div class="form-group">
+                    <label for="title">Название:</label>
+                    <input type="text" id="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="director">Режиссер:</label>
+                    <input type="text" id="director" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="genre">Жанр:</label>
+                    <select id="genre" required>
+                        <option value="">Выберите жанр</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="duration">Длительность (мин):</label>
+                    <input type="number" id="duration" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="releaseYear">Год выпуска:</label>
+                    <input type="number" id="releaseYear" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ageRestriction">Возрастное ограничение:</label>
+                    <input type="number" id="ageRestriction" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Описание:</label>
+                    <textarea id="description" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="posterUrl">Ссылка на постер:</label>
+                    <input type="url" id="posterUrl">
+                </div>
+                
+                <div class="form-group">
+                    <label for="trailerUrl">Ссылка на трейлер (YouTube):</label>
+                    <input type="url" id="trailerUrl" placeholder="https://www.youtube.com/watch?v=...">
+                    <p class="form-hint">Вставьте ссылку на YouTube видео</p>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn">Сохранить</button>
+                    <button type="button" id="cancelBtn" class="btn btn-cancel">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/movies.js"></script>
+</body>
+</html>

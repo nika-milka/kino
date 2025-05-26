@@ -158,15 +158,17 @@ body {
 }
 
 .feature-btn {
-  display: inline-block;
-  padding: 8px 15px;
+  padding: 10px 15px;
   background-color: #3498db;
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .feature-btn:hover {

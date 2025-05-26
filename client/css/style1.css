@@ -1,12 +1,13 @@
+/* Reset and Global Styles */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Preferred, overrides Arial */
 }
 
 body {
-  background-color: #f5f7fa;
+  background-color: #f5f7fa; /* Use the darker background */
   color: #333;
   line-height: 1.6;
 }
@@ -14,9 +15,10 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px; /* Keeps the inner padding */
 }
 
+/* Dashboard Specific Styles */
 .dashboard {
   padding: 20px;
 }
@@ -35,8 +37,9 @@ body {
   color: #2c3e50;
 }
 
+/* General UI Elements (Buttons, Tables, Forms, Modals) */
 .btn {
-  padding: 10px 15px;
+  padding: 10px 15px;  /*Adjust to fit content. 20 looks too big*/
   background-color: #3498db;
   color: white;
   border: none;
@@ -61,13 +64,20 @@ body {
   background-color: #c0392b;
 }
 
-/* Убраны зелёные кнопки .btn-success */
 .btn-success {
-  background-color: #3498db; /* Используем основной синий вместо зелёного */
+  background-color: #3498db; /* Keeping consistent blue */
 }
 
 .btn-success:hover {
-  background-color: #2980b9; /* Тёмно-синий при наведении */
+  background-color: #2980b9;
+}
+
+.btn-cancel {
+    background-color: #e74c3c;
+}
+
+.btn-cancel:hover {
+    background-color: #c0392b;
 }
 
 .btn-logout {
@@ -77,6 +87,25 @@ body {
 .btn-logout:hover {
   background-color: #7f8c8d;
 }
+
+.back-link {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block
+}
+
+.back-link:hover {
+    background-color: #2980b9;
+}
+
 
 .table-container {
   background: #fff;
@@ -92,7 +121,8 @@ table {
   margin-top: 20px;
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -113,31 +143,47 @@ tr:hover {
   gap: 10px;
 }
 
+
+/* Modals */
 .modal {
-  display: none;
+  display: none; /* Corrected for consistency */
   position: fixed;
-  z-index: 1;
+  z-index: 100; /* Higher z-index */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Standard translucent overlay */
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
   background-color: #fff;
-  margin: 10% auto;
-  padding: 30px;
+  margin: 5% auto; /* Adjusted for initial positioning */
+  padding: 25px; /* Keeps consistent padding */
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  width: 50%;
+  width: 90%; /* Responsive width */
   max-width: 600px;
+  position: relative;
+  animation: modalopen 0.3s;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .close {
-  color: #555;
-  float: right;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: #aaa;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
@@ -147,35 +193,190 @@ tr:hover {
   color: #333;
 }
 
+
+/* Form Elements */
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Slightly reduced for compactness */
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #555;
+  margin-bottom: 5px; /* Reduced from 8px */
+  font-weight: bold;
+  color: #555; /* Darker Label Color */
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 16px;
-  transition: border 0.3s;
+  font-size: 16px; /* Consistency */
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #3498db;
-  outline: none;
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
+.form-hint {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Movie Grid Styles */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.movie-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-poster {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.movie-trailer {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.movie-trailer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.trailer-placeholder {
+  background-color: #eee;
+  padding: 20px;
+  text-align: center;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.movie-info {
+  padding: 15px;
+}
+
+.movie-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.movie-director {
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #7f8c8d;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.movie-description {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.movie-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.edit-btn {
+  background-color: #f39c12;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #e67e22;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+
+/* Common Layout and Utility Classes */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px; /* Spacing */
+}
+
+.header h1 {
+  margin: 0; /* Override potentially conflicting styles */
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px; /* Spacing */
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing */
+}
+
+
+/* Additional Styles (Specific to the Second Style Set) */
 .tabs {
   display: flex;
   margin-bottom: 20px;
@@ -220,7 +421,7 @@ tr:hover {
   font-size: 16px;
 }
 
-/* Дополнительные стили для специальных элементов */
+/* Additional Styles for Special Elements */
 .error-text {
   color: #e74c3c;
 }
@@ -239,27 +440,56 @@ tr:hover {
   color: #666;
 }
 
-/* Медиа-запросы для адаптивности */
+/* Media Queries */
+
+/* General Adaptiveness */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter {
+        margin-top: 15px;
+    }
+
+    .movies-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
+
+/* Larger breakpoints with consistent values */
 @media (min-width: 576px) {
   .dashboard-header {
     flex-direction: row;
     align-items: center;
   }
-  
+
   .btn {
     padding: 10px 15px;
     font-size: 16px;
   }
-  
+
   .dashboard-title {
     font-size: 24px;
   }
-  
+
   .table-container {
     padding: 20px;
   }
-  
-  th, td {
+
+  th,
+  td {
     padding: 12px 15px;
     font-size: 16px;
   }
@@ -269,18 +499,18 @@ tr:hover {
   .dashboard {
     padding: 20px;
   }
-  
+
   .modal-content {
     padding: 25px;
   }
-  
+
   .form-group input,
   .form-group select,
   .form-group textarea {
     padding: 12px;
     font-size: 16px;
   }
-  
+
   .search-input {
     padding: 12px;
     font-size: 16px;
@@ -291,25 +521,25 @@ tr:hover {
   .table-container {
     padding: 25px;
   }
-  
+
   .actions {
     flex-wrap: nowrap;
   }
 }
 
-/* Адаптация для очень маленьких экранов */
+/* Adaptiveness for Very Small Screens */
 @media (max-width: 400px) {
   .btn {
     width: 100%;
     text-align: center;
     margin-bottom: 5px;
   }
-  
+
   .actions {
     flex-direction: column;
     gap: 5px;
   }
-  
+
   .modal-content {
     width: 95%;
     padding: 15px;
