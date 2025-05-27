@@ -1,3 +1,5 @@
+/*авторизация */
+
 class Auth {
   constructor() {
     this.init();

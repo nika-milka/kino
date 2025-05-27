@@ -1,4 +1,5 @@
-// client/js/halls.js
+/* редактирование залов */
+
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы DOM
     const hallModal = document.getElementById('hallModal');

@@ -1,3 +1,5 @@
+/* фильмов*/
+
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы DOM
     const moviesContainer = document.getElementById('moviesContainer');

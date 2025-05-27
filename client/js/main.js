@@ -1,3 +1,5 @@
+
+
 // Глобальные переменные
 let currentTab = 'cinemas';
 

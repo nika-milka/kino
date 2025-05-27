@@ -1,3 +1,5 @@
+/* редактирование типов залов */
+
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы DOM
     const hallTypeModal = document.getElementById('hallTypeModal');

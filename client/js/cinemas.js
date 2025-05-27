@@ -1,3 +1,5 @@
+/* редактирование кинотеатров */
+
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы DOM
     const cinemaModal = document.getElementById('cinemaModal');
