@@ -13,6 +13,7 @@ const hallRoutes = require('./routes/halls');
 const hallTypeRoutes = require('./routes/hallTypes');
 const moviesRouter = require('./routes/movies');
 const genresRouter = require('./routes/genres');
+const addSessionRoutes = require('./routes/add-session'); // ADDED: Import addSessionRoutes
 
 // Database configuration (if necessary)
 const db = require('./config/db');
@@ -57,10 +58,10 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     if (req.method === 'POST' || req.method === 'PUT') {
-      console.log('Request body:', req.body);
+        console.log('Request body:', req.body);
     }
     next();
-  });
+});
 
 // API endpoints
 app.get('/api/cinemas', async (req, res) => {
@@ -72,7 +73,6 @@ app.get('/api/cinemas', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-
 
 app.get('/api/sessions/:cinemaId', async (req, res) => {
     try {
@@ -125,6 +125,7 @@ app.use('/api/halls', hallRoutes);
 app.use('/api/hall-types', hallTypeRoutes);
 app.use('/api/movies', moviesRouter);
 app.use('/api/genres', genresRouter);
+app.use('/', addSessionRoutes); // ADDED: Mount addSessionRoutes
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
