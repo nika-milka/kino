@@ -38,7 +38,7 @@ function displayTickets(tickets) {
     loadingMessage.style.display = 'none';
 
     if (tickets.length === 0) {
-        ticketsTableBody.innerHTML = '<tr><td colspan="9">Нет билетов</td></tr>';
+        ticketsTableBody.innerHTML = '<tr><td colspan="8">Нет билетов</td></tr>';
         return;
     }
 
@@ -54,15 +54,14 @@ function displayTickets(tickets) {
             <td>${startTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
             <td>${ticket.hall_code}</td>
             <td>${ticket.quantity}</td>
-            <td>${ticket.type}</td>
-            <td>${formattedBookingDate}</td>
             <td>
-                <button class="btn" data-ticket-id="${ticket.ticket_id}">Удалить</button>
                 <select class="status-select" data-ticket-id="${ticket.ticket_id}">
                     <option value="buy" ${ticket.type === 'buy' ? 'selected' : ''}>Куплен</option>
                     <option value="reserve" ${ticket.type === 'reserve' ? 'selected' : ''}>Забронирован</option>
                 </select>
             </td>
+            <td>${formattedBookingDate}</td>
+            <td><button class="delete-btn" data-ticket-id="${ticket.ticket_id}">Удалить</button></td>
         `;
         ticketsTableBody.appendChild(row);
     });

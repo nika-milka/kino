@@ -319,9 +319,10 @@ h1 {
     margin-top: 20px;
 }
 
-#ticketsTable th, #ticketsTable td {
+#ticketsTable th,
+#ticketsTable td {
     padding: 12px 15px;
-    text-align: left;
+    text-align: center; /* Выравниваем текст по центру */
     border-bottom: 1px solid #ddd;
 }
 
@@ -333,3 +334,31 @@ h1 {
 #ticketsTable tr:hover {
     background-color: #f1f1f1;
 }
+
+.ticket-type-tabs {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.ticket-type-tabs button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    color: #333;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.ticket-type-tabs button.active {
+    background-color: #3498db;
+    color: white;
+}
+
+#ticketsTable td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
