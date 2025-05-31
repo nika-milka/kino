@@ -188,6 +188,62 @@ app.post('/api/tickets', async (req, res) => {
     }
 });
 
+// API endpoint для получения билетов пользователя (без группировки)
+app.get('/api/tickets/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const result = await pool.query(`
+            SELECT
+                t.ticket_id,
+                t.quantity,
+                t.type,
+                t.booking_date,
+                m.title AS movie_title,
+                s.start_time,
+                h.hall_code
+            FROM tickets t
+            JOIN sessions s ON t.session_id = s.session_id
+            JOIN movies m ON s.movie_id = m.movie_id
+            JOIN halls h ON s.hall_id = h.hall_id
+            WHERE t.user_id = $1
+            ORDER BY t.booking_date DESC
+        `, [userId]);
+
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Error fetching user tickets:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// API endpoint для удаления билета
+app.delete('/api/tickets/:ticketId', async (req, res) => {
+    const { ticketId } = req.params;
+
+    try {
+        await pool.query('DELETE FROM tickets WHERE ticket_id = $1', [ticketId]);
+        res.json({ message: 'Билет успешно удален' });
+    } catch (err) {
+        console.error('Error deleting ticket:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+// API endpoint для изменения статуса билета
+app.put('/api/tickets/:ticketId', async (req, res) => {
+    const { ticketId } = req.params;
+    const { newType } = req.body;
+
+    try {
+        await pool.query('UPDATE tickets SET type = $1 WHERE ticket_id = $2', [newType, ticketId]);
+        res.json({ message: 'Статус билета успешно изменен' });
+    } catch (err) {
+        console.error('Error updating ticket status:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 // Serve static files
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/cinema.html'));
@@ -195,6 +251,10 @@ app.get('/', (req, res) => {
 
 app.get('/session.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/session.html'));
+});
+
+app.get('/tickets.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/tickets.html'));
 });
 
 // API Routes
