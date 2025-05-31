@@ -1,0 +1,223 @@
+/* style3.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin: 0;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.cinema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.cinema-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.cinema-card:hover {
+    transform: translateY(-5px);
+}
+
+.cinema-info {
+    padding: 20px;
+}
+
+.cinema-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.cinema-address,
+.cinema-phone {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.cinema-phone {
+    color: #3498db;
+}
+
+.select-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.select-btn:hover {
+    background-color: #2980b9;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #7f8c8d;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+}
+
+/* ... (предыдущие стили остаются) */
+
+/* Стили для страницы сеансов */
+.back-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #2980b9;
+}
+
+#sessionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#sessionTable th,
+#sessionTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#sessionTable th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+#sessionTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.movie-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.movie-container:hover {
+    transform: translateY(-5px);
+}
+
+.session-item {
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.add-session-container {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.back-to-main {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Flexbox для выравнивания элементов в верхней части */
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+}
+
+.filter-section label {
+    margin-right: 10px;
+}

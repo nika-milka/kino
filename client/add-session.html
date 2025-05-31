@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Киносеансы</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style3.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>  <!-- Подключение Moment.js -->
+    <script src="./js/add-session.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="top-section">
+            <div class="left-section">
+                <h1>Киносеансы</h1>
+                <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#addSessionModal">
+                    Добавить сеанс
+                </button>
+            </div>
+            <div class="right-section">
+                <a href="manager.html" class="btn btn-logout" >Вернутся на главную</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Фильтры</h3>
+                <div class="form-group">
+                    <label for="cinemaFilter">Кинотеатр:</label>
+                    <select class="form-control" id="cinemaFilter">
+                        <option value="">Все кинотеатры</option>
+                    </select>
+                </div>
+                <div class="filter-section">
+                    <label for="genreFilter">Фильтр по жанру:</label>
+                    <select class="form-control" id="genreFilter">
+                        <option value="">Все жанры</option>
+                    </select>
+                </div>
+                <button id="resetFilters" class="btn btn-secondary">Сбросить фильтры</button>
+            </div>
+            <div class="col-md-9">
+                <div id="moviesContainer">
+                    <!-- Здесь будут отображаться фильмы и сеансы -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для добавления сеанса -->
+    <div class="modal fade" id="addSessionModal" tabindex="-1" role="dialog" aria-labelledby="addSessionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addSessionModalLabel">Добавить сеанс</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addSessionForm">
+                        <div class="form-group">
+                            <label for="movie">Фильм:</label>
+                            <select class="form-control" id="movie" name="movie_id" required>
+                                <!-- Опции будут добавлены через JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cinema">Кинотеатр:</label>
+                            <select class="form-control" id="cinema" name="cinema_id" required>
+                                <!-- Опции будут добавлены через JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hall">Зал:</label>
+                            <select class="form-control" id="hall" name="hall_id" required>
+                                <!-- Опции будут добавлены через JavaScript на основе выбранного кинотеатра -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Дата:</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="startTime">Время начала:</label>
+                            <input type="time" class="form-control" id="startTime" name="start_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endTime">Время окончания:</label>
+                            <input type="time" class="form-control" id="endTime" name="end_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Цена:</label>
+                            <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+                        </div>
+                        <button type="submit" class="btn">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для редактирования сеанса -->
+    <div class="modal fade" id="editSessionModal" tabindex="-1" role="dialog" aria-labelledby="editSessionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editSessionModalLabel">Редактировать сеанс</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editSessionForm">
+                        <input type="hidden" id="editSessionId" name="session_id">
+                        <div class="form-group">
+                            <label for="editMovie">Фильм:</label>
+                            <select class="form-control" id="editMovie" name="movie_id" required>
+                                <!-- Опции будут добавлены через JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCinema">Кинотеатр:</label>
+                            <select class="form-control" id="editCinema" name="cinema_id" required>
+                                <!-- Опции будут добавлены через JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editHall">Зал:</label>
+                            <select class="form-control" id="editHall" name="hall_id" required>
+                                <!-- Опции будут добавлены через JavaScript на основе выбранного кинотеатра -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDate">Дата:</label>
+                            <input type="date" class="form-control" id="editDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStartTime">Время начала:</label>
+                            <input type="time" class="form-control" id="editStartTime" name="start_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEndTime">Время окончания:</label>
+                            <input type="time" class="form-control" id="editEndTime" name="end_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPrice">Цена:</label>
+                            <input type="number" class="form-control" id="editPrice" name="price" step="0.01" required>
+                        </div>
+                        <button type="submit" class="btn">Сохранить изменения</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
