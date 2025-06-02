@@ -102,36 +102,37 @@ class Auth {
   }
 
   async handleRegister(e) {
-    e.preventDefault();
-    const errorElement = document.getElementById('errorMessage');
-    errorElement.textContent = '';
+  e.preventDefault();
+  const errorElement = document.getElementById('errorMessage');
+  errorElement.textContent = '';
 
-    const username = document.getElementById('regUsername').value;
-    const email = document.getElementById('regEmail').value;
-    const password = document.getElementById('regPassword').value;
-    const role = document.getElementById('regRole').value;
+  const username = document.getElementById('regUsername').value;
+  const email = document.getElementById('regEmail').value;
+  const password = document.getElementById('regPassword').value;
+  // Роль по умолчанию - 'user'
+  const role = 'user';
 
-    try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password, role }),
-      });
+  try {
+    const response = await fetch('http://localhost:3000/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password, role }),
+    });
 
-      if (response.ok) {
-        alert('Регистрация прошла успешно! Теперь вы можете войти.');
-        window.location.href = 'index.html';
-      } else {
-        const data = await response.json();
-        errorElement.textContent = data.error || 'Ошибка регистрации. Пожалуйста, попробуйте снова.';
-      }
-    } catch (error) {
-      console.error('Ошибка:', error);
-      errorElement.textContent = 'Ошибка сети. Пожалуйста, попробуйте позже.';
+    if (response.ok) {
+      alert('Регистрация прошла успешно! Теперь вы можете войти.');
+      window.location.href = 'index.html';
+    } else {
+      const data = await response.json();
+      errorElement.textContent = data.error || 'Ошибка регистрации. Пожалуйста, попробуйте снова.';
     }
+  } catch (error) {
+    console.error('Ошибка:', error);
+    errorElement.textContent = 'Ошибка сети. Пожалуйста, попробуйте позже.';
   }
+}
 }
 
 // Инициализация при загрузке страницы

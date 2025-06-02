@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кинотеатры</title>
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+    <div class="feature-card">
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Управление пользователями</h1>
+                <a href="system.html" class="btn " >Вернутся на главную</a>
+            </div>
+  <div id="usersList">
+    <!-- Список пользователей будет загружен здесь -->
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Загружаем список пользователей
+  loadUsers();
+});
+
+async function loadUsers() {
+  try {
+    const response = await fetch('http://localhost:3000/api/users', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+
+    if (response.ok) {
+      const users = await response.json();
+      renderUsers(users);
+    } else {
+      console.error('Ошибка загрузки пользователей');
+    }
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
+
+function renderUsers(users) {
+  const usersList = document.getElementById('usersList');
+  usersList.innerHTML = '';
+
+  users.forEach(user => {
+    const userDiv = document.createElement('div');
+    userDiv.className = 'user-item';
+    userDiv.innerHTML = `
+      <p>${user.username} (${user.email}) - ${user.role}</p>
+      <select class="role-select" data-user-id="${user.user_id}">
+        <option value="user" ${user.role === 'user' ? 'selected' : ''}>Обычный пользователь</option>
+        <option value="manager" ${user.role === 'manager' ? 'selected' : ''}>Менеджер</option>
+        <option value="system" ${user.role === 'system' ? 'selected' : ''}>Администратор</option>
+      </select>
+      <button class="update-role-btn" data-user-id="${user.user_id}">Обновить</button>
+    `;
+    usersList.appendChild(userDiv);
+  });
+
+  // Добавляем обработчики событий для кнопок обновления
+  document.querySelectorAll('.update-role-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const userId = e.target.getAttribute('data-user-id');
+      const roleSelect = document.querySelector(`.role-select[data-user-id="${userId}"]`);
+      const newRole = roleSelect.value;
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/users/${userId}/role`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({ role: newRole })
+        });
+
+        if (response.ok) {
+          alert('Роль пользователя успешно обновлена');
+          loadUsers(); // Обновляем список
+        } else {
+          const data = await response.json();
+          alert(data.error || 'Ошибка обновления роли');
+        }
+      } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Ошибка сети');
+      }
+    });
+  });
+}
+</script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

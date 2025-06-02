@@ -323,3 +323,41 @@ function openEditSessionModal(sessionId) {
             }
         });
     }
+
+
+// server/add-session.js
+function Session() {
+  const date = $('#date').val();
+  const startTime = $('#startTime').val();
+  const endTime = $('#endTime').val();
+  const startDateTime = `${date}T${startTime}`;
+  const endDateTime = `${date}T${endTime}`;
+
+  const formData = {
+    movie_id: $('#movie').val(),
+    hall_id: $('#hall').val(),
+    start_time: startDateTime,
+    end_time: endDateTime,
+    date: date,
+    price: $('#price').val()
+  };
+
+  return fetch('http://localhost:3000/sessions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  })
+    .then(response => {
+      if (!response.ok) throw new Error('Ошибка при добавлении сеанса');
+      $('#addSessionModal').hide();
+      $('#addSessionForm')[0].reset();
+      if (typeof loadMovies === 'function') {
+        loadMovies();
+      }
+    })
+    .catch(() => alert('Ошибка при добавлении сеанса'));
+}
+
+module.exports = {
+  Session
+};

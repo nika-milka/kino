@@ -8,12 +8,9 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
-
-    const validRoles = ['user', 'manager', 'system'];
-    if (!validRoles.includes(role)) {
-      return res.status(400).json({ error: 'Неверная роль пользователя' });
-    }
+    const { username, email, password } = req.body;
+    // Устанавливаем роль по умолчанию
+    const role = 'user';
 
     const userExists = await db.query(
       'SELECT * FROM users WHERE username = $1 OR email = $2',
@@ -48,6 +45,7 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Ошибка сервера' });
   }
 });
+
 
 router.post('/login', async (req, res) => {
   try {
